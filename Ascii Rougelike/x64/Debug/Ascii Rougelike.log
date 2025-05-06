@@ -1,0 +1,39 @@
+﻿  Weapon.cpp
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.h(116,44): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Weapon.cpp')
+  
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.h(131,54): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Weapon.cpp')
+  
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.h(196,55): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Weapon.cpp')
+  
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(208,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(212,24): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(446,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(448,24): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(454,57): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(455,59): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(462,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(509,40): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(510,40): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(511,40): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(512,40): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(520,41): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(521,41): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(527,39): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(528,39): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(627,34): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(629,31): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(631,25): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(668,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(710,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(743,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(822,25): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(843,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(845,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(850,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\dev\DuelGameDemo\Ascii Rougelike\Weapon.cpp(851,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Write.cpp
+  Generating Code...
+  Ascii Rougelike.vcxproj -> C:\dev\DuelGameDemo\x64\Debug\Ascii Rougelike.exe

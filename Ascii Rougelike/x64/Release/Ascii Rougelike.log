@@ -1,0 +1,68 @@
+﻿  Character.cpp
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(232,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(232,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(232,46): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(232,46): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(232,62): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(232,62): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(232,75): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(232,75): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(283,104): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(283,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(351,92): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(351,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(370,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(371,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(372,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(373,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(322,7): warning C4101: 'skillChoice': unreferenced local variable
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(362,7): warning C4101: 'skillChoice': unreferenced local variable
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(410,66): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(424,37): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(439,104): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(453,75): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(586,5): warning C4102: 'ios': unreferenced label
+  Creator.cpp
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Creator.cpp(158,35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Duel.cpp
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(207,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(208,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(211,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(214,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(551,27): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(552,27): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(609,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(610,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(632,30): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(633,31): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(645,60): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(648,58): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(660,71): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(665,78): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(669,73): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(1153,21): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+  Entity.cpp
+  environment.cpp
+  main.cpp
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\main.cpp(26,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Weapon.cpp
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(60,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(61,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(101,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(102,77): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(106,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(107,48): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(111,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(269,16): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(465,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(469,24): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(776,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Weapon.cpp(798,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Write.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Duel.cpp(1016): warning C4715: 'Duel::valid': not all control paths return a value
+C:\Users\Keith\source\repos\Ascii Rougelike\Ascii Rougelike\Character.cpp(576): warning C4715: 'Character::characterChooser': not all control paths return a value
+  All 647 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Ascii Rougelike.vcxproj -> C:\Users\Keith\source\repos\Ascii Rougelike\x64\Release\Ascii Rougelike.exe

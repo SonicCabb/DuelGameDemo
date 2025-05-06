@@ -1,0 +1,438 @@
+void Duel::clash()
+{
+	//pointer to the current attacker and defender
+	Character *attacker,*defender;
+	
+	//determine the attacker and defender (set the pointers)
+	if (player1->getAttacking())
+	{
+		attacker = player1;
+		defender = player2;
+	}
+	else
+	{
+		attacker = player2;
+		defender = player1;
+	}
+
+
+	//Pointer to the attackers and defenders current weapon for this clash
+	Weapon *atWep, *defWep;
+	
+	int atWepSkillIndex;
+	int defWepSkillIndex;
+	//this is the type of attack being used. important for figuring our skills. This is different than the attack slot located in _attackerAttackIndex
+	int atType = -1;
+
+	string attackString = attackChoice(attacker);
+
+	//attacker weapon
+	if (_attackerWeaponIndex >= 0)
+	{
+		atWep = attacker->getWeapon(_attackerWeaponIndex);
+		atType = atWep->getAttackType(_attackerAttackIndex);
+		
+	}
+	else
+	{
+		atWep = new Weapon;
+		atWep->setClass("Still");
+	}
+
+	if (_defenderWeaponIndex >= 0)
+		defWep = defender->getWeapon(_defenderWeaponIndex);
+	else if (_defenderWeaponIndex == -1)
+	{
+		defWep = new Weapon;
+		defWep->setClass("Dodge");
+	}
+	else
+	{
+		defWep = new Weapon;
+		defWep->setClass("Still");
+	}
+	
+	atWepSkillIndex = attacker->classToWepSkill(atWep->getClass());
+	defWepSkillIndex = defender->classToWepSkill(defWep->getClass());
+	//this is the index to the skill associated with the players current weapon or move
+	
+	
+
+	//value that determines how much your skill affects the battle. Higher, the more it is weighted
+	int skillWeight = 10; int reachWeight = 10; int speedWeight = 4; int typeWeight = 5;
+	
+	//this scales with level. Helps balence combat at higher levels
+	int scaler = 1 + (attacker->getLevel() + defender->getLevel()) / 2;
+
+	//if the defending weapon is a shield, reach doesn't matter hardly at all
+	if (defWep->getClass() == "Shield" || atWep->getClass() == "Shield") reachWeight = 2;
+
+	//gets the attacker and defender weapon skills to be used later
+	float attackerSkillBonus = scaler; //everyone has a little skill with everything
+	float defenderSkillBonus = scaler;
+
+	int advantage = 0;	//attackers weapon advantage
+
+
+	
+	//bonuses from attributes. Two handed with agility, one handed with strength.
+	int attackerAttributeBonus = attacker->getBaseValue(true, attacker->isTwoHandedWielding());
+	int defenderAttributeBonus = defender->getBaseValue(false, defender->isTwoHandedWielding());
+
+	/*
+	if (attacker->isTwoHandedWielding()) attackerAttributeBonus = attacker->getAgility();
+	else attackerAttributeBonus = attacker->getStrength();
+
+	if (defender->isTwoHandedWielding()) defenderAttributeBonus = defender->getAgility();
+	else defenderAttributeBonus = defender->getStrength();
+	*/
+
+	//determine skill bonuses
+	if (attackString == "Still") attackerSkillBonus = 0;
+	else if (attackString == "Feint")
+	{
+		//feinting takes into account skill with that weapon, as well as your reflex score, feint skill, and any atrribute bonus for the weapon
+		attackerSkillBonus += (attacker->getWepSkill(atWepSkillIndex) * 3) + (attacker->getReflex() * 10) + (attacker->getAttSkill(3) * 10) + attackerAttributeBonus;
+		defenderSkillBonus += (defender->getReflex() * 10) + (defender->getAttSkill(3) * 10) + 10; //everyone has a decently high defense against feints
+	}
+	else
+	{
+		attackerSkillBonus += (attacker->getWepSkill(atWepSkillIndex) * skillWeight) + (attacker->getAttSkill(atType) * typeWeight) + attackerAttributeBonus;	//main attack skill
+
+		//now, see how the defender fairs
+		if (defendChoice() == "Still")
+		{
+			defenderSkillBonus = 0;
+		}
+		else if (defendChoice() == "Counter")
+		{
+			//now we use these to determine if the counterattack hits
+
+			//attacker defense is dodge skill plus agility and reflex
+			attackerSkillBonus = attacker->getBaseValue(true, 4) + (attacker->getAttSkill(2) * skillWeight) + attacker->getAgility() + attacker->getReflex();
+			defenderSkillBonus += (defender->getWepSkill(defWepSkillIndex) * skillWeight) + (atWep->getReach() * atWep->getReach()) + defenderAttributeBonus; //reach of the weapon is added to the counter attack value as well as their attribute bonus
+
+			//counterattacking with a shield works really well
+			if (defWep->getClass() == "Shield") defenderSkillBonus += defWep->getDef();
+
+			//counterattacking agaist a shield does not
+			if (atWep->getClass() == "Shield ") attackerSkillBonus += atWep->getDef();
+		}
+		else if (defendChoice() == "Parry")
+		{
+			//if the defending weapon is a shield, use shield skill, otherwise, parry skill
+			if (defWep->getClass() == "Shield") defenderSkillBonus += (defender->getDefSkill(0) * skillWeight) + defenderAttributeBonus;
+			else defenderSkillBonus += (defender->getDefSkill(1) * skillWeight) + defenderAttributeBonus;
+
+			//fists are good against longer weapons
+			if (defWep->getClass() == "Unarmed") defenderSkillBonus += (defender->getWepSkill(5) * skillWeight) + (atWep->getReach() * 20);
+			if (atWep->getClass() == "Unarmed" && defWep->getClass() == "Polearm") attackerSkillBonus += 5;
+
+
+
+			defenderSkillBonus += (defenderAttributeBonus * defWep->getBalance()); //weapons with low balance are bad at parrying
+
+			//this is the only case where weapon advantage is measured
+			int reachAd = ((atWep->getReach() - defWep->getReach()) * reachWeight);
+			int speedAd = ((atWep->getSpeed() - defWep->getSpeed()) * speedWeight);
+			int otherBonus = defWep->getDef() * -1;	//Adds any defensive bonus
+
+			advantage = reachAd + speedAd + otherBonus;
+		}
+		else //dodge
+		{
+			defenderSkillBonus += (defender->getDefSkill(2) * skillWeight) + defender->getAgility() + defender->getReflex();
+			attackerSkillBonus += (atWep->getSpeed() * atWep->getSpeed());	//attacker gets huge bonus agaist dodge if the weapon is faster
+		}
+
+	}
+
+
+
+
+	//at this point, we have the intial skills for what will be happening. Attacker skill, defender skill, and weapon advantage.
+	//We now need to add in other bonuses
+	int attack = 0;
+	int defense = 0;
+	
+
+	attack += attackerSkillBonus;
+	defense += defenderSkillBonus;
+
+	if (advantage < 0) defense -= advantage;
+	else if (advantage > 0) attack += advantage;
+
+
+	//add weapon modifiers if needed
+
+	if (attackString != "Still")
+	{
+		//an attacker attacking into a counter attack doesn't need any attack bonuses
+		if (defendChoice() != "Counter")
+			attack += (attack * (((double)atWep->getAttackModBonus(atType) + (double)atWep->getAttackModBonus()) / 100.0));
+	}
+	if (defendChoice() == "Parry" || defendChoice() == "Counter")	//defensive bonuses only apply to parrys and counters
+		defense += (defense * (defWep->getParryModBonus() / 100.0));
+
+
+
+	//add posture modifiers
+
+	int postureBonus = 50;
+
+	//posture doesn't effect feints
+	if (attackString != "Feint")
+	{
+		//if postivie posture, this is positive. If negative, it is negative
+		attack += (attack * (postureBonus / 100.0) * attacker->getPosture());
+	}
+
+	if (defendChoice() != "Counter")
+	{
+		defense += (defense * (postureBonus / 100.0) * defender->getPosture() * -1);
+	}
+	else
+	{//if counterattacking, aggressive is better
+		defense += (defense * (postureBonus / 100.0) * defender->getPosture());
+	}
+
+
+	//can't have negative attack/defense
+	if (attack < 0) attack = 0;
+	if (defense < 0) defense = 0;
+
+
+
+	//display things, and hand out bonuses/do damage
+	system("CLS");
+
+	Write::setColor(7, 0);
+	cout << "Combat Screen" << endl << endl;
+	Write::setColor(0, 7);
+
+	//if the attacker is not standing still, show how they attacked, else show they don't so anything
+	attacker->printName(false, 0);
+	if (attackString != "Still")
+	{
+		if (defendChoice() != "Counter")
+		{
+			cout << " attacks with a ";
+			attacker->getWeapon(_attackerWeaponIndex)->displayName();
+			cout << " " << attacker->getWeapon(_attackerWeaponIndex)->wepAttack(_attackerAttackIndex).name << " (attack of " << attack << ")";
+			if (advantage > 0) cout << "(Weapon advantage of " << advantage << ")." << endl;
+			else cout << "." << endl;
+		}
+		else//is counter attack
+		{
+			if (attackString == "Attack")
+				cout << " attacks with a " << attacker->getWeapon(_attackerWeaponIndex)->wepAttack(_attackerAttackIndex).name << " into a counterattack and is guaranteed a hit" << endl;
+			else//if it is a feint
+				cout << " feints agaist the counterattack with a " << attack << endl;
+		}
+	}
+	else cout << " does not engage." << endl;
+
+
+	//display what the defender does
+	defender->printName(false, 0);
+	if (attackString != "Feint")
+	{
+		if (defendChoice() == "Parry")
+		{
+			cout << " parries with their " << defWep->getName() << " (defense of " << defense << ")";
+			if (advantage < 0) cout << " (Weapon advantage of " << (advantage * -1) << ")." << endl;
+			else cout << "." << endl;
+		}
+		else if (defendChoice() == "Counter")
+		{
+			cout << " counters with their " << defWep->getName() << " (defense of " << defense << " against ";
+			attacker->printName(false, 0);
+			cout << "'s counterattack defense of " << attack << endl;
+		}
+		else if (defendChoice() == "Dodge")
+		{
+			cout << " attempts to dodge out of the way (defense of " << defense << ")." << endl;
+		}
+		else cout << " does not engage." << endl;
+	}
+	else
+	{
+		cout << " attemps to avoid the feint with a " << defense << " defense." << endl;
+	}
+		
+	_getch();
+
+
+
+
+
+	//now we need to see what happens 
+
+
+	bool attackSuccess = false;
+	
+	if (attackString != "Still")
+		//attackSuccess = success(attack, defense);
+	
+	cout << endl;
+	//stale modifiers
+	int staleWep = -5; int staleAt = -25;
+
+
+	int wepBonusGain = 10;//Modifier for various weapon bonuses
+
+	if (attackString == "Attack")
+	{
+		if (attackSuccess == true)
+		{
+			attacker->printName(false, 0);
+			cout << "'s attack is successful." << endl;
+
+			doDamage(atWep, attacker, defender, atType);
+
+			if (defendChoice() == "Counter")//if it was a counterattack
+			{
+				defender->printName(false, 0);
+				cout << " did not succeed with their counterattack." << endl;
+
+			}
+
+		}
+		else//then the defense was a success
+		{
+			defender->printName(false, 0);
+			if (defendChoice() == "Counter")//if it was a counterattack
+			{
+				//automatic attacker damage
+				doDamage(atWep, attacker, defender, atType);
+
+				cout << " successfully counter attacked." << endl;
+
+				doDamage(defWep, defender, attacker, -1);
+
+			}
+			else if (defendChoice() == "Dodge")
+			{
+				cout << " successfully dodges the attack." << endl;
+
+				//defender gets standard reaction gain multiplied by 2 for dodging
+				defender->changeReaction(1, 2);
+
+
+				for (int i = 0; i < defender->numEquippedWeapons(); i++)
+					newModifier(defender->getWeapon(i), 4, 1, defender, wepBonusGain);
+
+
+			}
+			else if (defendChoice() == "Parry")
+			{
+				int parryAttBonus = 3 * wepBonusGain;
+
+				cout << " successfully parries the attack." << endl;
+
+				defender->changeReaction(1, 1);
+
+
+				newModifier(defWep, 4, 1, defender, parryAttBonus);
+
+				//if you parry with a fist you take damage if not a polearm
+				if (defWep->getClass() == "Unarmed")
+				{
+					if (atWep->getClass() != "Unarmed") //can't grab a fist
+					{
+						defender->printName(false, 0);
+						cout << " grabbed the attackers " << atWep->getName() << " while parrying." << endl;
+
+						newModifier(atWep, 4, 1, attacker, -70);
+					}
+					
+					
+					if (atWep->getClass() != "Polearm")
+					{
+						int damage = 1 + (atWep->randomDamage(_attackerAttackIndex) / 8);
+
+						defender->alterHP(damage * -1);
+						defender->printName(false, 0);
+						cout << " also takes " << damage << " damage for parrying with their fist." << endl;
+					}
+					
+				}
+				if (atWep->getClass() == "Unarmed")
+				{//attacking with a fist you take damage if it is not a polearm, and if it is a polearm, you can grab it
+					if (defWep->getClass() != "Polearm")
+					{
+						int damage = 1 + (defWep->randomDamage(0) / 8);
+
+						attacker->alterHP(damage * -1);
+
+						attacker->printName(false, 0);
+						cout << " takes " << damage << " damage for attacking with their fist."  << endl;
+					}
+					else
+					{
+						attacker->printName(false, 0);
+						cout << " grabbed the attackers " << atWep->getName() << " while attacking." << endl;
+						newModifier(defWep, 4, 1, defender, -70);
+					}
+
+				}
+
+			}
+		}
+
+		//stale penalty
+		
+		cout << endl << "Stale Penalty: " << endl;
+		newModifier(atWep, 4, 1, attacker, staleWep);
+		newModifier(atWep, _attackerAttackIndex, 1, attacker, staleAt);
+
+	}
+	else if (attackString == "Feint")
+	{
+		attacker->printName(false, 0);
+		if (attackSuccess == true)
+		{
+			cout << " is successful with their feint." << endl;
+
+			//the whole weapon gets a modifier
+			newModifier(atWep, 4, 1, attacker, attack);
+
+			//if feinting something with a defensive bonus
+			if (defWep->getDef() > 0)
+			{
+				//defensive penalty
+				newModifier(defWep, 3, 1, defender, defWep->getDef() * -2);
+			}
+
+			attacker->changeReaction(1, 1);	//attacker gets standard bonus, defender gets decrease beased on reflex
+			defender->changeReaction(-2, 4);
+		}
+		else
+		{
+	
+			cout << " is not successful with their feint." << endl;
+
+			defender->changeReaction(1, 1);	
+			attacker->changeReaction(-2, 4);
+		}
+
+	}
+	else
+	{
+		if (defendChoice() == "Still")
+		{
+			attacker->changeReaction(1, 1);
+			defender->changeReaction(1, 1);
+		}
+		else
+		{
+			attacker->changeReaction(1, 1);
+		}
+	}
+
+	
+	//pause the screen before returning
+	_getch();
+
+
+}
